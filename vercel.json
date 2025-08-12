@@ -10,7 +10,7 @@
       }
     },
     {
-      "src": "api/index.py",
+      "src": "src/main_vercel.py",
       "use": "@vercel/python",
       "config": {
         "runtime": "python3.11"
@@ -20,7 +20,7 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "/api/index.py"
+      "dest": "/src/main_vercel.py"
     },
     {
       "src": "/(.*)",
