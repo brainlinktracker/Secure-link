@@ -39,7 +39,11 @@ const TrackingLinksPage = () => {
   const fetchTrackingLinks = async () => {
     try {
       setLoading(true)
-      const response = await fetch('https://5000-i3axerqweb415mh7wgsgs-15aa9b1c.manus.computer/api/tracking-links')
+      const response = await fetch("/api/tracking-links", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+        },
+      })
       const data = await response.json()
       
       if (data.success) {
@@ -64,10 +68,11 @@ const TrackingLinksPage = () => {
 
     try {
       setCreating(true)
-      const response = await fetch('https://5000-i3axerqweb415mh7wgsgs-15aa9b1c.manus.computer/api/tracking-links', {
+      const response = await fetch("/api/tracking-links", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
         },
         body: JSON.stringify({
           original_url: newUrl,
@@ -410,10 +415,10 @@ const TrackingLinksPage = () => {
             <div className="flex items-center space-x-2">
               <Activity className="h-4 w-4 text-orange-500" />
               <div className="text-2xl font-bold">
-                {trackingLinks.filter(link => link.is_active).length}
+                {trackingLinks.reduce((sum, link) => sum + link.total_events, 0)}
               </div>
             </div>
-            <p className="text-xs text-muted-foreground mt-1">Active Links</p>
+            <p className="text-xs text-muted-foreground mt-1">Total Events</p>
           </CardContent>
         </Card>
       </div>
