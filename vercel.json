@@ -20,7 +20,11 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "/src/main_vercel.py"
+      "dest": "src/main_vercel.py"
+    },
+    {
+      "src": "/track/(.*)",
+      "dest": "src/main_vercel.py"
     },
     {
       "src": "/(.*)",
@@ -33,3 +37,4 @@
     "DATABASE_TYPE": "postgresql"
   }
 }
+

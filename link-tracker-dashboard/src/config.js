@@ -1,12 +1,14 @@
-// API Configuration
-export const API_BASE = process.env.NODE_ENV === 'production' 
-  ? '/api' 
-  : 'https://5000-ihjknimab3crqzylkot2e-cf14c883.manusvm.computer/api';
+// Auto-patched config.js — defaults to local backend in development.
+const defaultDevBase = 'http://localhost:5000/api';
+
+export const API_BASE = import.meta.env.MODE === 'production'
+  ? '/api'
+  : (import.meta.env.VITE_API_BASE || defaultDevBase);
 
 export const API_ENDPOINTS = {
-  BASE: process.env.NODE_ENV === 'production' 
-    ? '' 
-    : 'https://5000-ihjknimab3crqzylkot2e-cf14c883.manusvm.computer',
+  BASE: import.meta.env.MODE === 'production'
+    ? ''
+    : (import.meta.env.VITE_API_BASE ? import.meta.env.VITE_API_BASE.replace(/\/$/, '') : 'http://localhost:5000'),
   AUTH: {
     LOGIN: `${API_BASE}/auth/login`,
     REGISTER: `${API_BASE}/auth/register`,
@@ -18,4 +20,3 @@ export const API_ENDPOINTS = {
   HEALTH: `${API_BASE}/health`,
   USERS: `${API_BASE}/users`
 };
-
