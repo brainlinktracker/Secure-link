@@ -158,6 +158,8 @@ def init_db():
                     bot_confidence REAL,
                     bot_reason TEXT,
                     status TEXT DEFAULT 'processed',
+                    isp TEXT,
+                    email TEXT,
                     FOREIGN KEY (campaign_id) REFERENCES campaigns (id),
                     FOREIGN KEY (user_id) REFERENCES users (id)
                 )
@@ -291,6 +293,8 @@ def init_db():
                     bot_confidence REAL,
                     bot_reason TEXT,
                     status TEXT DEFAULT 'processed',
+                    isp TEXT,
+                    email TEXT,
                     FOREIGN KEY (campaign_id) REFERENCES campaigns (id),
                     FOREIGN KEY (user_id) REFERENCES users (id)
                 )
